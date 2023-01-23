@@ -1,0 +1,20 @@
+.container{
+   width: 80% !important;
+   margin: 0 auto;
+}
+table{
+   margin: 2rem 0;
+   border: 2px solid var(--yellow)
+}
+table thead tr th{
+   color: var(--navy);
+   font-size: 2.5rem;
+   text-align: center;
+   font-weight: 500;
+}
+
+table thead tr td, table tbody tr td, table tbody tr th{
+   font-weight: normal;
+   font-size: 1.8rem;
+   text-align: center;
+}

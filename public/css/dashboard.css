@@ -1,0 +1,45 @@
+.hero-section{
+   background-image: url("../images/smartquiz2.png");
+   background-size:cover;
+   background-repeat: no-repeat;
+   /* width: 160rem; */
+   height: 40rem;
+}
+
+
+.container{
+   margin-top: 2rem;
+   /* background-color: black; */
+   height: 300px;
+   padding: 3rem 0 0 4rem;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   gap: 6rem;
+}
+
+
+
+.c-card{
+   width: 20rem;
+   height: 20rem;
+   background-color: var(--pale-blue);
+   border-radius: 2rem;
+   padding-top: 2rem;
+   display: flex;
+   flex-direction: column;
+   /* justify-content: center; */
+   align-items: center;
+}
+
+.c-img{
+   width: 10rem;
+   height: 10rem;
+}
+
+/* using d-btn as class name bacause cus-btn will override existing styles */
+.d-btn{
+   font-size: 1.5rem;
+   margin-top: 1.5rem;
+   width: 12rem;
+   text-align: center;
+}

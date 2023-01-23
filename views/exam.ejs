@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/icon" sizes="16x16" href="images/favicon.ico">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/general.css">
+   <!-- <link rel="stylesheet" href="css/fontawesome.css"> -->
+   <link rel="stylesheet" href="css/exam.css">
+   <script src="js/dist/jeelizGlanceTracker.js"></script>
+   <title>Smart Quiz</title>
+</head>
+
+<body>
+   <!-- <%- include('partials/header.ejs')%> -->
+
+   <button type="button" class="btn hide" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="myModal">
+    </button>
+ 
+   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Rules</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeBtn"></button>
+          </div>
+          <div class="modal-body">
+           <ul>
+            <li>Do not offscreen while attempting test</li>
+            <li>Do not exit fullscreen by any means</li>
+           </ul>
+           <p style="padding: 1rem;">If you voilate the above two rules then you will be given ZERO marks for this test</p>
+          </div>
+          <div class="modal-footer">
+            
+            <button type="button" class="cus-btn" data-bs-dismiss="modal" id="confirm-btn">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+   <div class="container" id="container">
+
+      <div class="failed hide" id="failed">
+         <h1 class="failedTitle">Failed!</h1>
+         <p class="failedPara">You Failed this test due to voilating the rules</p>
+      </div>
+
+      <div class="failed hide" id="warning">
+         <h1 class="failedTitle">Warning!</h1>
+         <p class="failedPara">Please Do not look offscreen while attempting test</p>
+      </div>
+      <div class="failed hide" id="lastWarning">
+         <h1 class="failedTitle">Last Warning!</h1>
+         <p class="failedPara">Look at the screen while attempting test</p>
+      </div>
+
+
+
+
+      <div id="loader" class="loader"></div>
+
+
+      <div id="quiz" class="quiz hide">
+         <div id="hud">
+            <div id="hud-item">
+               <p class="hud-prefix" id="progressText"></p>
+               </p>
+               <div id="progressBar">
+                  <div id="progressBarFull"></div>
+               </div>
+            </div>
+            <div id="hud-item">
+               <p class="hud-prefix">
+                  Score
+               </p>
+               <h1 class="hud-main-text" id="score">
+                  0
+               </h1>
+            </div>
+         </div>   
+
+         <h1 id="question">What is answer to this question?</h1>
+         <div class="choice-container">
+            <p class="choice-prefix">A</p>
+            <p class="choice-text" data-number="1">Choice 1</p>
+         </div>
+         <div class="choice-container">
+            <p class="choice-prefix">B</p>
+            <p class="choice-text" data-number="2">Choice 2</p>
+         </div>
+         <div class="choice-container">
+            <p class="choice-prefix">C</p>
+            <p class="choice-text" data-number="3">Choice 3</p>
+         </div>
+         <div class="choice-container">
+            <p class="choice-prefix">D</p>
+            <p class="choice-text" data-number="4">Choice 4</p>
+         </div>
+      </div>
+   </div>
+
+
+
+   <!-- <button id="start">Start</button>
+   <button id="stop">Stop</button> -->
+
+
+   <canvas id="glanceTrackerCanvas"></canvas>
+
+
+
+
+   <script src="js/axios.min.js"></script>
+   <script src="js/exam.js"></script>
+   
+   <script src="js/bootstrap.js"></script>
+   <!-- <script src="js/fontawesome.js"></script> -->
+</body>
+
+</html>

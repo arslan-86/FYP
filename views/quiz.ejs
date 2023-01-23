@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/icon" sizes="16x16" href="images/favicon.ico">
+   <!-- <link rel="manifest" href="/site.webmanifest"> -->
+   <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+   <link rel="stylesheet" href="css/fontawesome.css">
+   <link rel="stylesheet" href="css/general.css">
+   <link rel="stylesheet" href="css/quiz.css">
+   <title>Smart Quiz - Quiz</title>
+</head>
+
+<body>
+   <%- include ('partials/header.ejs') %>
+
+      <div class="container">
+
+         <div class="search-box">
+
+            <form action="" id="form">
+               <div id="filter-group">
+                  <div id="filter">
+                     <input type="radio" name="filter" value="id" id="id">
+                     <label for="id">Search By ID</label>
+                  </div>
+                  <div id="filter">
+                     <input type="radio" name="filter" value="title" id="title" checked >
+                     <label for="name">Search By Title</label>
+                  </div>
+               </div>
+               <input type="search" placeholder="Search" id="search-bar" name="searchBar">
+               <button type="submit" class="cus-btn" id="search-btn"><i class="fas fa-search"></i></button>
+            </form>
+
+         </div>
+
+         <div class="errorLabel hideLabel" id="errorLabel">
+            <h2>No Quiz Found!</h2>
+         </div>
+
+         <div class="grid-container" id="gridContainer">
+
+            <!-- <div class="quiz-info">
+            
+               <p class="label">Title:</p>
+               <h1 class="title w80">Quiz Title</h1>
+               <p class="label">Description:</p>
+               <p class="desc w80">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate odit esse commodi dolorum, quo
+                  provident cumque. Nemo in officiis fugit soluta alias, suscipit eveniet iure deleniti voluptas,
+                  expedita commodi nam?
+               </p>
+
+               
+               <div class="toBeFlexed w80">
+                  <div>
+                     <p class="label">Questions:</p>
+                     <h3 class="questionsNo">10</h3>
+                  </div>
+                  <div class="seperator"></div>
+                  <div>
+                     <p class="label">Total Marks:</p>
+                     <h3 class="marks ">10</h3>
+                  </div>
+               </div>
+               <hr class="hr w80">
+               <button class="cus-btn" id="start-quiz-btn">Start</button>
+
+
+            </div>
+
+         </div>
+
+      </div>  -->
+
+
+
+         </div>
+
+
+         <script src="js/quiz.js"></script>
+         <!-- <script src="js/bootstrap.js"></script> -->
+         <script src="js/fontawesome.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/icon" sizes="16x16" href="images/favicon.ico">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/fontawesome.css">
+   <link rel="stylesheet" href="css/general.css">
+   <link rel="stylesheet" href="css/register.css">
+   <title>Smart Quiz - Register</title>
+</head>
+
+<body>
+   <header>
+      <nav>
+         <h1>Smart <span>Quiz</span></h1>
+      </nav>
+   </header>
+
+
+   <div class="row mt-5">
+      <div class="col-md-6 m-auto">
+         <div class="card card-body">
+            <h1 class="text-center md-3">
+               <i class="fas fa-user-plus"></i>
+               Register
+            </h1>
+            <%- include('partials/messages.ejs')%>
+            <form action="/register" method="POST">
+
+               <div class="form-group mt-2">
+                  <label for="name">Name</label>
+                  <div class="row">
+                     <div class="col">
+                        <input type="text" class="form-control" name="firstName" id="name" placeholder="First name" required
+                             value="<%= typeof firstName != 'undefined' ?firstName : ''%>" >
+                     </div>
+                     <div class="col">
+                        <input type="text" class="form-control" name="lastName" placeholder="Last name"  value="<%= typeof lastName != 'undefined' ?lastName : ''%>" > 
+                     </div>
+                  </div>
+               </div>
+
+
+
+               <div class="form-group mt-2">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required
+                     value="<%= typeof email != 'undefined' ?email : ''%>" />
+               </div>
+
+
+
+               <div class="form-group mt-2">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" name="password" class="form-control" placeholder="Enter password"
+                     required value="<%= typeof password != 'undefined' ? password : ''%>" />
+               </div>
+
+               <div class="form-group mt-2">
+                  <label for="password2">Confirm Password</label>
+                  <input type="password" id="password2" name="password2" class="form-control"
+                     placeholder="Repeat password" required
+                     value="<%= typeof password2 != 'undefined' ? password2 : ''%>" />
+               </div>
+
+               <fieldset>
+                  <legend>Are you a Student Or Teacher?</legend>
+
+                  <input type="radio" name="isTeacher" id="student" value= 'false' required>
+                  <label for="student">Student</label>
+
+                  <input type="radio" name="isTeacher" id="teacher" value="true" required>
+                  <label for="teacher">Teacher</label>
+
+
+               </fieldset>
+
+
+               <button type="submit" class="cus-btn btn-block mt-3">Register</button>
+
+               <p class="lead mt-4">Have an Account? <a href="/login">Login</a></p>
+            </form>
+         </div>
+      </div>
+   </div>
+
+
+   <script src="js/bootstrap.js"></script>
+   <script src="js/fontawesome.js"></script>
+</body>
+
+</html>

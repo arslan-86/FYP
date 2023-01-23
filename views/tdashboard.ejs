@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/icon" sizes="16x16" href="images/favicon.ico">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/fontawesome.css">
+   <link rel="stylesheet" href="css/general.css">
+   <link rel="stylesheet" href="css/dashboard.css">
+   <title>Smart Quiz - Dashboard</title>
+</head>
+
+<body>
+   <%- include ('partials/header.ejs') %>
+   <section class="hero-section">
+
+   </section>
+   <div class="noticationBar">
+      <%- include('partials/messages.ejs')%>
+   </div>
+   <section class="container" id="main-body">
+      <div class="c-card">
+         <img src="images/quiz.png" class="c-img" alt="attempt quiz">
+         <a href="t/create" class="cus-btn d-btn">Create Quiz</a>
+      </div>
+      <div class="c-card">
+         <img src="images/quiz.png" class="c-img" alt="attempt quiz">
+         <a href="t/edit" class="cus-btn d-btn">Edit Quiz</a>
+      </div>
+      <div class="c-card">
+         <img src="images/exam.png" class="c-img" alt="result">
+         <a href="t/result" class="cus-btn d-btn">Result</a>
+      </div>
+      <div class="c-card">
+         <img src="images/user.png" class="c-img" alt="profile">
+         <a href="#" class="cus-btn d-btn">Profile</a>
+         
+      </div>
+      <div class="c-card">
+         <img src="images/instructions.png" class="c-img" alt="result">
+         <a href="#" class="cus-btn d-btn">Instructions</a>
+      </div>
+      <div class="c-card">
+         <img src="images/settings.png" class="c-img" alt="result">
+         <a href="#" class="cus-btn d-btn">Setting</a>
+      </div>
+   </section>
+
+   <script src="js/bootstrap.js"></script>
+   <script src="js/fontawesome.js"></script>
+</body>
+
+</html>

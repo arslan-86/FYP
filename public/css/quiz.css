@@ -1,0 +1,151 @@
+.container{
+   width: 80%;
+   margin-inline: auto;
+   margin-top: 3rem;
+   /* background-color: aqua; height: 10rem; */
+}
+
+.search-box{
+   width: 80%;
+   /* background-color: bisque; */
+   text-align: center;
+   margin-inline: auto;
+}
+
+
+
+
+
+/* same height so search box and button align perfectly */
+#search-btn, input{
+   font-size: 2rem;
+   height: 4.5rem !important;
+}
+
+
+input{
+   border-top-right-radius: 0;        
+   /* to align perfectly with seach button => removing right side radius */ 
+   border-bottom-right-radius: 0;
+   width: 90%;
+   margin-right: -1px;
+}
+input:focus{
+   border: 1px solid var(--navy);
+}
+
+#filter-group{
+   display: flex;
+   justify-content: center;
+}
+#filter{
+   display: flex;
+   margin-right: 2rem;
+   padding: 1rem;
+   
+}
+#filter label{
+   margin: 0 !important;
+   cursor: pointer;
+}
+#id, #title{
+   cursor: pointer;
+   display: inline;
+   margin: 0 !important;
+   width: 4rem !important;
+   height: 2rem !important;
+}
+
+
+#search-btn{
+   margin-left: -2px;
+   border-top-left-radius: 0;
+   /* to align perfectly with seach bar => removing Left side radius */
+   border-bottom-left-radius: 0;
+   width: 8rem;
+   height: 4.51rem;
+   border: 1px solid var(--navy);   
+   margin-bottom: 4rem;
+}
+
+.errorLabel{
+   text-align: center;
+   margin-top: -2rem;
+}
+.errorLabel h2{
+   color: red;
+}
+.hideLabel{
+   display: none;
+}
+
+
+.grid-container{
+
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 3rem;
+}
+
+
+.quiz-info{
+   padding: 2rem;
+   width: 50rem;
+   
+   background-color: rgb(253, 253, 251);
+   border-radius: 1rem;
+   border: 8px solid;
+   border-left-color: var(--yellow);
+   border-top-color: var(--navy);
+   border-right-color: var(--yellow);
+   border-bottom-color: var(--navy);
+   box-shadow: 4px 4px 8px  rgba(0,0,0,0.5);
+   /* background-color: aqua; */
+}
+
+.label{
+   font-size: 1.8rem;
+}
+/* title, desc , hr and toBeFlexed has w80 class => I want these to have 80% and centered */
+.w80{
+   width: 80%;
+   margin: 0 auto;
+}
+
+
+.title, .desc{
+   margin-bottom: 3rem ;
+}
+.desc{
+   width: 80%;
+   font-size: 2rem;
+   text-align: justify;
+   
+}
+
+/* question and marks will be in a row seperated by a div(seperator) */
+.toBeFlexed{
+   display: flex;
+   justify-content: space-evenly;
+   
+}
+.seperator{
+   width: .3rem;
+   background-color: var(--yellow);
+   border-radius: 2rem;
+}
+.hr{
+   width: 80%;
+   height: .5rem;
+   margin: 1rem auto ;
+   background-color: var(--navy);
+}
+
+
+#start-quiz-btn{
+   text-align: center;
+display: block;
+ margin-inline: auto;
+ width: 10rem;
+ font-size: 2rem;
+}

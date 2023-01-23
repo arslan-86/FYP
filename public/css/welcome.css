@@ -1,0 +1,60 @@
+body{
+   background-color: white;
+}
+
+/* Header and navbar */
+
+header {
+   background-color: var(--pale-blue);
+   padding: 1.3rem 4rem;
+   height: 6.4rem;
+}
+
+nav {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+/* main body */
+
+section{
+   height: 80vh;
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+/* Intro || left side */
+
+.div-intro{
+   width: 50rem;
+   text-align: center;
+}
+
+.div-intro h1{
+   font-size: 4rem;
+   margin-bottom: 1.5rem;
+}
+
+p{
+   font-size: 2rem;
+   text-align:justify;
+   margin-bottom: 2rem;
+}
+
+.signUpBtn{
+   display: inline-block;
+   width: 15rem;
+}
+
+/* Image || Right side */
+
+.div-image{
+   width: 50rem;
+}
+
+.div-image img{
+   width: 50rem;
+   height: 50rem;
+}

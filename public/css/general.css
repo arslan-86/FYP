@@ -1,0 +1,124 @@
+:root {
+   --red: #F65058FF;
+   --yellow: #FBDE44FF;
+   --navy: #28334AFF;
+   --radiant-yellow: #F9A12EFF;
+   --pale-blue: hsl(225, 100%, 94%);
+   --very-pale-blue: hsl(225, 100%, 98%);
+   font-size: 62.5%;
+}
+
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+/* body {
+   background-color: var(--very-pale-blue);
+} */
+
+header{
+   height: 6.4rem; 
+   padding: 0rem 6rem; 
+   display: flex; 
+   align-items: center; 
+   background-color: var(--pale-blue);
+}
+nav{
+   width:100%; 
+   display: flex; 
+   align-items: center; 
+   justify-content: space-between;
+}
+.link-div{
+   display: flex;
+   gap: 8rem;
+}
+.link{
+   padding: 0.5rem 0.8rem;
+   /* border: 1px solid var(--radiant-yellow); */
+   border-radius: 1rem;
+   text-decoration: none;
+   font-size: 2rem;
+   font-weight: 500;
+   color: var(--navy);
+   /* background-color: var(--yellow); */
+}
+.link:hover{
+   color: var(--radiant-yellow);
+   
+}
+
+
+.notificationBar{
+   height: 2rem;
+   background-color: #aaa;
+}
+
+h1,
+h2,
+h3,
+h4 {
+   color: var(--navy);
+}
+h1{
+   font-size: 3rem;
+}
+h2{
+   font-size: 2.5rem;
+}
+h3{
+   font-size: 2rem;
+}
+
+span {
+   color: var(--radiant-yellow);
+}
+
+/* Input and Labels */
+label{
+   font-size: 2rem !important;
+   margin: 0.8rem 0 0 0.5rem;
+}
+
+input{
+   font-size: 2rem !important;
+   margin: 0.5rem;
+   padding: 1rem 1.2rem;
+   border: 1px solid gray;
+   border-radius: 1rem;
+   cursor: text;
+}
+
+input::placeholder{
+   color: #aaa !important;
+}
+
+input:focus {
+   outline: none;
+   border: 1px solid var(--bright-blue);
+}
+
+
+/* Buttons */
+
+.cus-btn {
+   font-family: 'Poppins', sans-serif;
+   color: var(--yellow);
+   background-color: var(--navy);
+   text-decoration: none;
+   font-size: 1.5rem;
+   font-weight: bold;
+   cursor: pointer;
+   margin: 0.5rem;
+   padding: 1rem 1.2rem;
+   border: 1px solid gray;
+   border-radius: 0.8rem;
+}
+
+.cus-btn:hover {
+   background-color: var(--yellow);
+   color: var(--navy);
+   /* border: 1px solid var(--navy); */
+}
