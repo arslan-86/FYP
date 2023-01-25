@@ -117,6 +117,10 @@ router.get('/t/edit', teacherController.editQuizGet);
 router.get('/t/result', teacherController.resultGet);
 router.get('/t/create', teacherController.createQuizGet);
 router.post('/t/createQuiz', teacherController.createQuizPost);
+router.get('/t/update/:id', teacherController.updateGet);
+router.post('/t/update', teacherController.updatePost);
+router.get('/t/delete/:id', teacherController.deleteGet);
+router.get('/t/profile', teacherController.profileGet);
 
 
 

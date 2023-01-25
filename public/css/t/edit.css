@@ -1,0 +1,34 @@
+table{
+   margin: 2rem 0;
+   border: 2px solid var(--yellow);
+}
+table thead tr th{
+   color: var(--navy);
+   font-size: 2rem;
+   text-align: center;
+   font-weight: 500;
+}
+table tbody tr td{
+   text-align: center;
+   font-size: 1.6rem;
+}
+.title{
+   width: 25rem;
+}
+
+.desc{
+   width: 40rem;
+   word-wrap: break-word;
+   text-align:justify;
+}
+
+.icon{
+   cursor: pointer;
+   font-size: 1.5rem;
+   margin-right: 1rem ;
+}
+
+table tbody tr td a{
+   color: var(--navy);
+   text-decoration: none;
+}
