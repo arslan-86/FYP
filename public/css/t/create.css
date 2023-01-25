@@ -23,16 +23,17 @@ form label{
 form input{
    display: block;
    font-size: 1.6rem !important;
-   width: 60%;
+   width: 70%;
 }
 
 form input:focus, textarea:focus{
    border: 1px solid var(--navy);
+   
 }
 
 form textarea{
    font-size: 1.6rem;
-   width: 60%;
+   width: 70%;
    border-radius: .8rem;
    padding: .6rem;
 }
@@ -55,8 +56,11 @@ form textarea{
 
 .input-group{
    margin-bottom: 3rem!important;
-   border: 2px solid var(--radiant-yellow);
-   padding: 1rem;
+   background-color: var(--very-pale-blue);
+   border-radius: 1rem;
+   box-shadow: 0 .5rem 1rem 0 rgba(0, 0, 0, 0.4);
+   padding: 1rem 2rem;
+   margin-top: 1rem;
    width: 70rem;
    position: relative;
 }

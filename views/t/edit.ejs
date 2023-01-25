@@ -8,37 +8,59 @@
    <link rel="icon" href="images/favicon.ico" type="image/icon" size="16x16">
    <link rel="stylesheet" href="css/t/edit.css">
    <link rel="stylesheet" href="css/general.css">
+   <link rel="stylesheet" href="css/fontawesome.css">
    <link rel="stylesheet" href="css/bootstrap.css">
    <title>Smart Quiz - Result</title>
 </head>
 
 <body>
    <%- include ('../partials/header.ejs')%>
-
-      <div class="container">
+   
+   <div class="container" style="padding-top: 2rem;">
+         <%- include ('../partials/messages.ejs')%>
          <table class="table table-striped">
             <thead>
                <tr>
                   <th scope="col">Quiz ID</th>
-                  <th scope="col">Quiz Title</th>
-                  <th scope="col">Total Marks</th>
-                  <th scope="col">Obtained Marks</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Questions</th>
+                  <th scope="col">Marks</th>
+                  <th scope="col">Action</th>
                </tr>
             </thead>
             <tbody>
+               <% if(data.length > 0) {%> 
+               <% for(let i=0; i < data.length; i++) {%>
                 <tr>
-                  <td>h</td>
-                  <td>sd</td>
-                  <td>hasd</td>
-                  <td>hsadas</td>
+                  <td class="id"><%= data[i].quiz_id%></td>
+                  <td class="title"><%= data[i].title%></td>
+                  <td class="desc"><%= data[i].desc%></td>
+                  <td class="questions"><%= data[i].questions%></td>
+                  <td class="marks%"><%= data[i].marks%></td>
+                  <td class="action">
+                  
+                    <a href= '/t/update/<%= data[i].id%>'>
+                     <i class="fa-solid fa-pen-to-square icon"></i>
+                  </a>
+                    <a href='/t/delete/<%= data[i].id%>'>
+                     <i class="fa-solid fa-trash  text-danger icon"></i>
+                  </a>
+                  </td>
                 </tr>
+                <%}} else {%>
+                  <h1>You have not created any Quiz yet!</h1>
+                  <%}%>
+                
             </tbody>
          </table>
       </div>
 
 
       <!-- Use /s/result get method and return all the data  -->
+      <script src="js/fontawesome.js"></script>
       <script src="js/t/edit.js"></script>
+      <script src="js/bootstrap.js"></script>
 </body>
 
 </html>

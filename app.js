@@ -47,6 +47,7 @@ app.use('/s', express.static(join(__dirname, 'public')));
 app.use('/result', express.static(join(__dirname, 'public')));
 app.use('/s/exam', express.static(join(__dirname, 'public')));
 app.use('/t', express.static(join(__dirname, 'public')));
+app.use('/t/update', express.static(join(__dirname, 'public')));
 
 //Global Variables
 app.use((req, res, next) =>{

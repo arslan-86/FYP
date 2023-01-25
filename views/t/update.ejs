@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/icon" size='16x16' href="images/favicon.ico">
+   <link rel="stylesheet" href="css/general.css">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/t/update.css">
+   <title>Smart Quiz - Update</title>
+</head>
+
+<body>
+   <%- include ('../partials/header.ejs')%>
+
+      <form action="/t/update" method="POST" id="form">
+
+         <div style="padding: 1rem;">
+            <div class="head-input-group">
+               <h1 class="quiz_id">Quiz ID:</h1>
+               <input type="text" name="quiz_id" id="quiz_id" required value="<%= data.quiz_id %>">
+            </div>
+
+
+            <div class="head-input-group">
+               <h1 class="title">Title:</h1>
+               <input type="text" name="title" required value="<%= data.title %>">
+            </div>
+
+            <div class="head-input-group">
+               <h1 class="desc">Description:</h1>
+               <textarea name="description" id="desc" cols="50" rows="3"><%= data.description %></textarea>
+            </div>
+
+            <div class="head-input-group">
+               <h1 class="totalQuestions">Total Questions:</h1>
+               <input type="number" name="totalQuestions" id="totalQuestions" min="1" required
+                  value="<%= data.totalQuestions %>">
+            </div>
+
+            <div class="head-input-group">
+               <h1 class="totalMarks">Each Question's Marks:</h1>
+               <input type="text" name="totalMarks" id="totalMarks" required value="<%= data.totalMarks %>">
+            </div>
+         </div>
+
+         <!-- <hr class="seperator"> -->
+
+
+
+
+         <% for(let i=0; i < data.questions.length; i++){%>
+            <div id="questions">
+               <div class="input-group">
+
+                  <label for="question">Question</label>
+                  <textarea name="question" id="question" cols="50" rows="2"><%= data.questions[i].question%></textarea required>
+
+                  <label for="choice">Choices</label>
+                  <input type="text" name="choice1" id="choice" placeholder="Choice no. 1" value="<%= data.questions[i].choice1%>">
+                  <input type="text" name="choice2" id="choice" placeholder="Choice no. 1"value="<%= data.questions[i].choice2%>">
+                  <input type="text" name="choice3" id="choice" placeholder="Choice no. 1" value="<%= data.questions[i].choice3%>">
+                  <input type="text" name="choice4" id="choice" placeholder="Choice no. 1"value="<%= data.questions[i].choice4%>">
+
+                  <label for="correct_answer">Correct Answer <span>[Please select number between 1 to 4]</span></label>
+                  <input type="number" name="answer" id="correct_answer" min="1" max="4" required value="<%= data.questions[i].answer%>">
+
+               </div>
+            </div>
+         <%}%>
+        
+
+      <div>
+        <button id="addQuestion" type="submit" class="cus-btn">Update</button>
+      </div>
+
+      <a href="/tdashboard">
+      <button type="button" class="cus-btn" id="submit">Back Home</button>
+   </a>
+
+   </form>
+</body>
+</html>
