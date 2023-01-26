@@ -202,11 +202,45 @@ const deleteGet = async (req, res) => {
 }
 
 const profileGet = (req, res) => {
+if(req.user.isTeacher){
+   User.findById({_id: req.user._id})
+   .then(u => {
 
-   res.render('t/profile')
+      res.render('t/profile', {data: u})
+   })
+   .catch(e => console.log(e))
+}
+else{
+   res.redirect('/s/profile')
+}
+}
+
+const profilePost = async (req, res) => {
+   User.updateOne(
+      {_id: req.user._id},
+      {
+         $set:{
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            phone: req.body.phone,
+            livein: req.body.livein,
+            age: req.body.age,
+            education: req.body.education,
+            work: req.body.education,
+            image: req.file.filename
+         }
+      }
+   )
+   .then(() => {
+      console.log('info updated')
+      res.redirect('/t/profile');
+   })
+   .catch((e) => console.log(e))
+  
 }
 
 
 
 
-module.exports = { createQuizPost, createQuizGet, editQuizGet, resultGet, updateGet, updatePost, deleteGet, profileGet }
+module.exports = { createQuizPost, createQuizGet, editQuizGet, resultGet, updateGet, updatePost, deleteGet, profileGet, profilePost }

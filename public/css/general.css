@@ -14,9 +14,6 @@
    box-sizing: border-box;
 }
 
-/* body {
-   background-color: var(--very-pale-blue);
-} */
 
 header{
    height: 6.4rem; 
@@ -55,6 +52,7 @@ nav{
    height: 2rem;
    background-color: #aaa;
 }
+
 
 h1,
 h2,
@@ -122,3 +120,4 @@ input:focus {
    color: var(--navy);
    /* border: 1px solid var(--navy); */
 }
+

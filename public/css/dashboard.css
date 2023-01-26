@@ -10,7 +10,7 @@
 .container{
    margin-top: 2rem;
    /* background-color: black; */
-   height: 300px;
+   height: auto;
    padding: 3rem 0 0 4rem;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -43,4 +43,8 @@
    margin-top: 1.5rem;
    width: 12rem;
    text-align: center;
+}
+
+.spacer{
+   margin-top: 10rem;
 }

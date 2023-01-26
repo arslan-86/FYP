@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 const passport = require('passport');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 //  Controllers
 
@@ -11,17 +12,40 @@ const studentController = require('../controllers/studentController.js');
 const teacherController = require('../controllers/teacherController.js');
 const registerController = require('../controllers/registerController.js');
 
-//   Models
+//   Modelsm
 const User = require('../models/User.js');
 const Result = require('../models/Result.js');
 const Quiz = require('../models/Quiz.js')
 
 let id = '';
 
+
+const storage = multer.diskStorage({
+   destination: function (req, file, cb) {
+      cb(null, 'public/uploads')
+   },
+   filename: function (req, file, cb) {
+      cb(null, file.originalname)
+   }
+})
+
+const upload = multer({ storage: storage });
+
+
+const isAuth = (req, res, next) => {
+   if(req.isAuthenticated()){
+      return next();
+   }
+   else{
+      req.flash('error_msg', 'Please log in');
+      res.redirect('/login')
+   }
+}
+
 router.get('/', (req, res) => {
    res.render('welcome');
 })
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', isAuth , (req, res) => {
    id = req.user._id;
    if (req.user.isTeacher) {
       res.redirect('/tdashboard')
@@ -30,7 +54,7 @@ router.get('/dashboard', (req, res) => {
       res.render('dashboard')
    }
 })
-router.get('/tdashboard', (req, res) => {
+router.get('/tdashboard', isAuth, (req, res) => {
    id = req.user_id;
    if (!req.user.isTeacher) {
       res.redirect('/dashboard')
@@ -40,8 +64,73 @@ router.get('/tdashboard', (req, res) => {
    }
 })
 
-router.get('/setting', (req, res) => {
+router.get('/setting', isAuth, (req, res) => {
    res.render('setting')
+})
+router.post('/setting', isAuth, async (req, res) => {
+   let errors = [];
+   let Oldp = req.body.oldPassword;
+   let Newp = req.body.newPassword;
+   let Newpv = req.body.newPasswordVerify;
+   if (Newp.length < 6) {
+      errors.push({
+         msg: 'Password cust be 6 characters long'
+      })
+      res.render('setting', {
+         errors,
+         Oldp,
+         Newp,
+         Newpv
+      })
+   }
+   else if (Newp !== Newpv) {
+      errors.push({
+         msg: 'New Passwords do not Match'
+      });
+      res.render('setting', {
+         errors,
+         Oldp,
+         Newp,
+         Newpv
+      })
+   }
+   else {
+      try {
+         let isMatch = await bcrypt.compare(Oldp, req.user.password);
+         if (isMatch) {
+            let hash = await bcrypt.hash(Newp, 10);
+            let x = await User.findOneAndUpdate({ _id: req.user._id }, {
+               $set: {
+                  password: hash
+               }
+            });
+
+            req.flash("success_msg", "Password Successfully Updated")
+            res.redirect('/setting')
+         }
+         else {
+            errors.push({ msg: 'Current password incorrect' });
+            res.render('setting', {
+               errors,
+               Oldp,
+               Newp,
+               Newpv
+            });
+         }
+
+      } catch (error) {
+         console.log(error);
+      }
+   }
+})
+router.post('/delete', isAuth, (req, res) => {
+   User.deleteOne({
+      _id: req.user._id
+   }).then(() => {
+      console.log('Account Deleted');
+      req.flash('success_msg','Account Deleted Successfully');
+      res.redirect('/register');
+      }).catch(e => console.log(e))
 })
 
 router.get('/instruction', (req, res) => {
@@ -93,10 +182,10 @@ router.post('/register', registerController.postRegister);
 //                    Student and Exam Routes
 // 
 //This render the exam.js and send the quiz id to getExam 
-router.get('/s/exam/:id', studentController.examGetHandler)
+router.get('/s/exam/:id', isAuth, studentController.examGetHandler)
 // Api created for frontEnd Javascript exam.js  line:147
-router.get('/s/getexam', studentController.getExam)
-router.get('/s/result', studentController.getResult);
+router.get('/s/getexam',isAuth,  studentController.getExam)
+router.get('/s/result', isAuth, studentController.getResult);
 // left this hander here because im using "id" which i cannot use in other file
 // line:18 => line:24 => line:31 => line:91
 // in order to save result i need student id which i cannot get in other files
@@ -117,21 +206,23 @@ router.post('/s/result', (req, res) => {
    res.send('Result Saved')
    User.findOneAndUpdate({ _id: req.user._id }, { $push: { attemptedQuizzes: req.body.quiz_id } }).then(() => console.log('savedd')).catch((er) => console.log(er))
 })
-router.get('/s/profile', studentController.profileGet)
+router.get('/s/profile', isAuth, studentController.profileGet)
+router.post('/s/profile', upload.single('image'), studentController.profilePost)
 
 
 
 // 
 //                    Teacher Routes
 // 
-router.get('/t/edit', teacherController.editQuizGet);
-router.get('/t/result', teacherController.resultGet);
-router.get('/t/create', teacherController.createQuizGet);
+router.get('/t/edit', isAuth, teacherController.editQuizGet);
+router.get('/t/result', isAuth, teacherController.resultGet);
+router.get('/t/create', isAuth, teacherController.createQuizGet);
 router.post('/t/createQuiz', teacherController.createQuizPost);
-router.get('/t/update/:id', teacherController.updateGet);
+router.get('/t/update/:id', isAuth, teacherController.updateGet);
 router.post('/t/update', teacherController.updatePost);
-router.get('/t/delete/:id', teacherController.deleteGet);
-router.get('/t/profile', teacherController.profileGet);
+router.get('/t/delete/:id', isAuth, teacherController.deleteGet);
+router.get('/t/profile', isAuth, teacherController.profileGet);
+router.post('/t/profile', upload.single('image'), teacherController.profilePost);
 
 
 
@@ -140,7 +231,7 @@ router.get('/t/profile', teacherController.profileGet);
 //
 //   QUIZ  Routes
 // 
-router.get('/quiz', (req, res) => {
+router.get('/quiz', isAuth, (req, res) => {
    if (req.user.isTeacher) {
       res.redirect('/t/create')
    } else if (!req.user.isTeacher) {
@@ -149,11 +240,16 @@ router.get('/quiz', (req, res) => {
 
 });
 router.post('/quiz', quizController.quizPostReqHandler);
-router.get('/quiz/i/:id', quizController.quizGetIdReq);
-router.get('/quiz/t/:title', quizController.quizGetTitleReq);
+router.get('/quiz/i/:id', isAuth, quizController.quizGetIdReq);
+router.get('/quiz/t/:title', isAuth, quizController.quizGetTitleReq);
 
 // 
 // 
 // 
+
+
+router.get('/*', (req, res)=>{
+   res.render('404')
+})
 
 module.exports = router;

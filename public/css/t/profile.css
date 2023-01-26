@@ -161,3 +161,26 @@ input:focus{
    border-left-color:  #ee5a6f;
    border-left-style:  solid ;
 }
+
+
+#btn{
+   width: 15rem;
+   padding: .2rem;
+   margin: 2rem 0 1rem 0;
+   font-size: 2rem;
+   font-weight: 500;
+   color: var(--yellow);
+   background-color: var(--navy);
+   border-radius: 1rem;
+}
+
+#btn:hover{
+   
+   color: var(--navy);
+   background-color: var(--yellow);
+   
+}
+
+.img-radius{
+   border-radius: 50%;
+}

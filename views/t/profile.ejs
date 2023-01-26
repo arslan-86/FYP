@@ -19,75 +19,81 @@
    <%- include ('../partials/header.ejs')%>
 
 
+      <form action="/t/profile" method="post" enctype="multipart/form-data">
 
-      <div class="row container d-flex justify-content-center">
-         <div class="col-xl-12 col-md-12">
-            <div class="card user-card-full">
-               <div class="row m-l-0 m-r-0">
-                  <div class="col-sm-4 bg-c-lite-green user-profile">
-                     <div class="card-block text-center text-white">
-                        <div class="m-b-25">
-                           <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
-                              alt="User-Profile-Image">
+         <div class="row container d-flex justify-content-center">
+            <div class="col-xl-12 col-md-12">
+               <div class="card user-card-full">
+                  <div class="row m-l-0 m-r-0">
+                     <div class="col-sm-4 bg-c-lite-green user-profile">
+                        <div class="card-block text-center text-white">
+                           <div class="m-b-25">
+                              <img src="uploads/<%=data.image%>" class="img-radius" 
+                                 alt="User-Profile-Image">
+                           </div>
+                           <label for="files" class="btn">Change Profile Image</label>
+                           <input id="files" style="visibility:hidden;" type="file" name="image">
+
                         </div>
-                        <label for="files" class="btn">Change Profile Image</label>
-                        <input id="files" style="visibility:hidden;" type="file">
-
                      </div>
-                  </div>
-                  <div class="col-sm-8">
-                     <div class="card-block">
-                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
-                        <div class="row">
-                           <div class="col-sm-6">
-                              <p class="m-b-10 f-w-600">First Name</p>
-                              <input type="text" name="firstName" value="Arslan">
+                     <div class="col-sm-8">
+                        <div class="card-block">
+                           <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                           <div class="row">
+                              <div class="col-sm-6">
+                                 <p class="m-b-10 f-w-600">First Name</p>
+                                 <input type="text" name="firstName" value="<%= data.firstName%>">
+                              </div>
+                              <div class="col-sm-6">
+                                 <p class="m-b-10 f-w-600">Last Name</p>
+                                 <input type="text" name='lastName' value="<%= data.lastName%>">
+                              </div>
                            </div>
-                           <div class="col-sm-6">
-                              <p class="m-b-10 f-w-600">Last Name</p>
-                              <input type="text" name='lastName' value="Khan">
+                           <div class="row">
+                              <div class="col-sm-6">
+                                 <p class="m-b-10 f-w-600">Email</p>
+                                 <input type="email" name='email' value="<%= data.email%>">
+                              </div>
+                              <div class="col-sm-6">
+                                 <p class="m-b-10 f-w-600">Phone</p>
+                                 <input type="text" name='phone' value="<%= data.phone%>">
+                              </div>
                            </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-sm-6">
-                              <p class="m-b-10 f-w-600">Email</p>
-                              <input type="email" name='email' value="arslan@gmail.com">
+                           <!-- <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6> -->
+                           <div class="row">
+                              <div class="col-sm-6">
+                                 <p class="m-b-10 f-w-600">Live in</p>
+                                 <input type="text" name='livein' value="<%= data.livein%>">
+                              </div>
+                              <div class="col-sm-6">
+                                 <p class="m-b-10 f-w-600">Age</p>
+                                 <input type="number" name='age' value="<%= data.age%>">
+                              </div>
                            </div>
-                           <div class="col-sm-6">
-                              <p class="m-b-10 f-w-600">Phone</p>
-                              <input type="text" name='phone' value="98979989898">
+                           <div class="row">
+                              <div class="col-sm-6">
+                                 <p class="m-b-10 f-w-600">Education <span>[Lastest]</span></p>
+                                 <input type="text" name='education' value="<%= data.education%>">
+                              </div>
+                              <div class="col-sm-6">
+                                 <p class="m-b-10 f-w-600">Working At</p>
+                                 <input type="text" name='work' value="<%= data.work%>">
+                              </div>
                            </div>
-                        </div>
-                        <!-- <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6> -->
-                        <div class="row">
-                           <div class="col-sm-6">
-                              <p class="m-b-10 f-w-600">Live in</p>
-                              <input type="text" name='liveIn' value="Islamabad">
+                           <div class="row text-center">
+                              <div class="col-sm-12">
+                                <button type="submit" id="btn">Save</button>
+                              </div>
                            </div>
-                           <div class="col-sm-6">
-                              <p class="m-b-10 f-w-600">Age</p>
-                              <input type="number" name='age' value="30">
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-sm-6">
-                              <p class="m-b-10 f-w-600">Education <span>[Lastest]</span></p>
-                              <input type="text" name='edu' value="BSCS Computer Science">
-                           </div>
-                           <div class="col-sm-6">
-                              <p class="m-b-10 f-w-600">Working At</p>
-                              <input type="text" name='work' value="Federal Urdu University">
-                           </div>
-                        </div>
 
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-      </div>
 
-
+      </form>
       <script src="js/bootsrap.js"></script>
 </body>
 

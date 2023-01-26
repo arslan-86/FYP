@@ -18,6 +18,20 @@ const userSchema = new mongoose.Schema({
    isTeacher:{
       type: Boolean,
    },
+   age: Number,
+   phone: String,
+   livein: String,
+   education: String,
+   work: String,
+   degree: String,
+   discipline:String,
+   semester: String,
+   shift: String,
+   section: String,
+   rollNo: String,
+   university: String,
+   image: String,
+
    
    attemptedQuizzes: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Quiz' }],
    createdQuizzes: [{  type: mongoose.SchemaTypes.ObjectId, ref: 'Quiz'}]

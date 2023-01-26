@@ -1,6 +1,9 @@
 const Quiz  = require('../models/Quiz.js');
 const Result  = require('../models/Result.js');
+const User = require('../models/User.js');
+const multer = require('multer');
 let  id = ''; 
+
 
 
 const examGetHandler = async (req, res) => {
@@ -32,15 +35,48 @@ const getResult = async (req, res) => {
    }
 }
 const profileGet = async (req, res) => {
-   if(!req.user.isTeacher){
-      res.render('s/profile');
-   }
-   else{
+   if(req.user.isTeacher){
       res.redirect('/t/profile')
    }
+   else{
+      User.findById({_id: req.user._id})
+      .then(u => {
+         console.log(u);
+       
+         res.render('s/profile', {data: u});
+      })
+      .catch(e => console.log(e))
+   }
+}
+const profilePost = async (req, res) => {
+   User.updateOne(
+      {_id: req.user._id},
+      {
+         $set:{
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            phone: req.body.phone,
+            livein: req.body.livein,
+            age: req.body.age,
+            degree: req.body.degree,
+            discipline: req.body.discipline,
+            semester: req.body.semester,
+            shift: req.body.shift,
+            section: req.body.section,
+            rollNo: req.body.rollNo,
+            university: req.body.university,
+            image: req.file.filename
+         }
+      }
+   )
+   .then(() => console.log('info updated'))
+   .catch((e) => console.log(e))
+   res.redirect('/s/profile');
+  
 }
 
-module.exports = {examGetHandler, getExam, getResult, profileGet};
+module.exports = {examGetHandler, getExam, getResult, profileGet, profilePost};
 
 
 
