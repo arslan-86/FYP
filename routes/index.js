@@ -40,6 +40,16 @@ router.get('/tdashboard', (req, res) => {
    }
 })
 
+router.get('/setting', (req, res) => {
+   res.render('setting')
+})
+
+router.get('/instruction', (req, res) => {
+   res.render('instruction')
+})
+
+
+
 router.get('/login', (req, res) => {
    if (req.isAuthenticated()) {
       if (req.user.isTeacher == true) {
@@ -107,6 +117,7 @@ router.post('/s/result', (req, res) => {
    res.send('Result Saved')
    User.findOneAndUpdate({ _id: req.user._id }, { $push: { attemptedQuizzes: req.body.quiz_id } }).then(() => console.log('savedd')).catch((er) => console.log(er))
 })
+router.get('/s/profile', studentController.profileGet)
 
 
 

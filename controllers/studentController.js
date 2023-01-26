@@ -31,11 +31,16 @@ const getResult = async (req, res) => {
    res.render('s/result', { result: result });
    }
 }
-const postResult = async (req, res) => {
-   
+const profileGet = async (req, res) => {
+   if(!req.user.isTeacher){
+      res.render('s/profile');
+   }
+   else{
+      res.redirect('/t/profile')
+   }
 }
 
-module.exports = {examGetHandler, getExam, getResult, postResult};
+module.exports = {examGetHandler, getExam, getResult, profileGet};
 
 
 

@@ -74,19 +74,19 @@ const createQuizPost = (req, res) => {
 const editQuizGet = async (req, res) => {
    let data = [];
    let len = req.user.createdQuizzes.length;
-   if(len > 0){
-   for (let i = 0; i < len; i++) {
-      let x = await Quiz.findOne({ _id: req.user.createdQuizzes[i] });
-      data.push({
-         id: x._id,
-         quiz_id: x.quiz_id,
-         title: x.title,
-         desc: x.description,
-         marks: x.totalMarks,
-         questions: x.totalQuestions
-      });
-   } 
-}
+   if (len > 0) {
+      for (let i = 0; i < len; i++) {
+         let x = await Quiz.findOne({ _id: req.user.createdQuizzes[i] });
+         data.push({
+            id: x._id,
+            quiz_id: x.quiz_id,
+            title: x.title,
+            desc: x.description,
+            marks: x.totalMarks,
+            questions: x.totalQuestions
+         });
+      }
+   }
    res.render('t/edit', { data: data });
 }
 
@@ -99,25 +99,31 @@ const resultGet = async (req, res) => {
       res.redirect('/s/result')
    }
    else if (req.user.isTeacher) {
-      let data = [];
-      req.user.createdQuizzes.forEach(id => {
-         Result.find({ quiz_id: id })
-            .then(u => {
-               if (u.length < 1) return;
-               for (let c of u) {
-                  c.populate('student_id').then(u => {
-                     console.log(c.quiz_id2);
-                     console.log(c.quiz_title);
-                     console.log(c.student_id.firstName + ' ' + u.student_id.lastName)
-                     console.log(c.totalMarks);
-                     console.log(c.obtainedMarks);
-                  })
-               }
-            })
-      });
-      res.render('t/result', { data: data });
+      try {
+         let data = [];
+         for (let i = 0; i < req.user.createdQuizzes.length; i++) {
+            let x = await Result.find({ quiz_id: req.user.createdQuizzes[i] }).populate('quiz_id').populate('student_id',);
+            for (let j = 0; j < x.length; j++) {
+               if (x[j].length < 1) return;
+               data.push({
+                  id       : x[j].quiz_id2,
+                  title    : x[j].quiz_title,
+                  desc     : x[j].quiz_id.description,
+                  std_name : x[j].student_id.firstName + ' ' + x[j].student_id.lastName,
+                  obtMarks : x[j].obtainedMarks,
+                  tMarks   : x[j].totalMarks,
+               })
+            }
+         }
+         // console.log(data);
+         res.render('t/result', { data: data })
+      }
+      catch (error) {
+         console.log(error);
+      }
    }
 }
+
 
 
 
@@ -196,13 +202,8 @@ const deleteGet = async (req, res) => {
 }
 
 const profileGet = (req, res) => {
-   User.updateOne({ firstName: 'Asad' }, {
-      $pull: {
-         createdQuizzes: '63cca1e3fbf11596517c6c51'
-      }
-   }).then(() => console.log('id removed')).catch(e => console.log(e))
 
-   res.send('ok')
+   res.render('t/profile')
 }
 
 

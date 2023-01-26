@@ -1,0 +1,32 @@
+.container{
+   margin-top: 2rem;
+   width: 60%;
+}
+#btn, #d-btn{
+   font-weight: 600;
+   margin-top: 1rem;
+   width: 10rem;
+   background-color: var(--navy);
+   color: var(--yellow)
+}
+#btn:hover, #d-btn:hover{
+   background-color: var(--yellow);
+   color: var(--navy)
+}
+
+
+.deleteLabel{
+   font-size: 2rem;
+   margin: 1rem 0 1rem 2rem;
+}
+
+.mt-2{
+   margin-top: 3rem;
+}
+.toCenter{
+   display: flex;
+   justify-content: space-between;
+   font-size: 2rem;
+   font-weight: 500;
+   margin: 2rem;  
+}

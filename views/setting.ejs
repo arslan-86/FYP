@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/icon" sizes="16x16" href="images/favicon.ico">
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/fontawesome.css">
+   <link rel="stylesheet" href="css/general.css">
+   <link rel="stylesheet" href="css/setting.css">
+   <title>Smart Quiz - Setting</title>
+</head>
+
+<body>
+   <%- include ('partials/header.ejs') %>
+      <div class="container">
+         <div class="card card-outline-secondary">
+            <div class="card-header">
+               <h3 class="mb-0">Change Password</h3>
+            </div>
+            <div class="card-body">
+               <form action="/setting" method="post" class="form" role="form" autocomplete="off">
+                  <div class="form-group">
+                     <label for="inputPasswordOld">Current Password</label>
+                     <input type="password" name='oldPassword' class="form-control" id="inputPasswordOld" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="inputPasswordNew">New Password</label>
+                     <input type="password" class="form-control" id="inputPasswordNew" name="newPassword" required>
+                     <span class="form-text small text-muted">
+                        The password must be 6-20 characters, and must <em>not</em> contain spaces.
+                     </span>
+                  </div>
+                  <div class="form-group">
+                     <label for="inputPasswordNewVerify">Verify</label>
+                     <input type="password" name='newPasswordVerify' class="form-control" id="inputPasswordNewVerify"
+                        required>
+                     <span class="form-text small text-muted">
+                        To confirm, type the new password again.
+                     </span>
+                  </div>
+                  <div class="form-group">
+                     <button type="submit" class="btn btn-lg" id="btn">Save</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+
+
+         <form action="/delete" method="post">
+            <div class="card card-outline-secondary mt-3">
+               <div class="card-header ">
+                  <h3 class="mb-0">Delete Account</h3>
+               </div>
+               <div class="toCenter">
+                  <p class="deleteLabel">Delete My Account</p>
+                  <button type="submit" class="btn btn-lg" id="d-btn">Delete</button>
+               </div>
+            </div>
+         </form>
+      </div>
+</body>
+
+</html>

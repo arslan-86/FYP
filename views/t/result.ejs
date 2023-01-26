@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="icon" type="image/icon" size="16x16" href="images/favicon.ico">
+   <link rel="stylesheet" href="css/bootstrap.css">
    <link rel="stylesheet" href="css/general.css">
    <link rel="stylesheet" href="css/t/result.css">
    <title>Smart Quiz - Result</title>
 </head>
+
 <body>
    <%- include('../partials/header.ejs')%>
-<table>
-   <tbody>
-    
-   </tbody>
-</table>
+      <div class="container">
+         <table>
+            <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th scope="col">Quiz ID</th>
+                     <th scope="col">Title</th>
+                     <th scope="col">Description</th>
+                     <th scope="col">Student Name</th>
+                     <th scope="col">Obtained Marks</th>
+                     <th scope="col">Total Marks</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <%if(data.length > 0) {%>
+                  <%for(let i = 0; i < data.length; i++){%>
+                  <tr>
+                     <td><%= data[i].id%></td>
+                     <td><%= data[i].title%></td>
+                     <td><%= data[i].desc%></td>
+                     <td><%= data[i].std_name%></td>
+                     <td><%= data[i].obtMarks%></td>
+                     <td><%= data[i].tMarks%></td>
+                  </tr>
+                  <%}}%>
+               </tbody>
+            </table>
+      </div>
 </body>
+
 </html>
