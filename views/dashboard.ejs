@@ -15,39 +15,74 @@
 
 <body>
    <%- include ('partials/header.ejs') %>
-   <section class="hero-section">
+      <section class="hero-section">
+         <form  id="form" >
 
-   </section>
+            <div class="inputGroup">
 
-   <section class="container" id="main-body">
-    
-      <div class="c-card">
-         <img src="images/quiz.png" class="c-img" alt="attempt quiz">
-         <a href="quiz" class="cus-btn d-btn">Quiz</a>
-      </div>
-      <div class="c-card">
-         <img src="images/exam.png" class="c-img" alt="result">
-         <a href="s/result" class="cus-btn d-btn">Result</a>
-      </div>
-      <div class="c-card">
-         <img src="images/user.png" class="c-img" alt="profile">
-         <a href="/s/profile" class="cus-btn d-btn">Profile</a>
+               <div class="radio">
+                  <input type="radio" id="id" class="radioBtn" name="filter" value="Id">
+                  <label for="id">Search By ID</label>
+                  <input type="radio" id='title' class="radioBtn" name="filter" value="title" checked>
+                  <label for="title">Search By Title</label>
+               </div>
+
+               <input id="searchBox" class="searchBox" type="search" name="searchBox" placeholder="Search quiz">
+               <button type="submit" class="Sbtn" id="Sbtn">Search</button>
+            </div>
+
+         </form>
+
          
-      </div>
-      <div class="c-card">
-         <img src="images/instructions.png" class="c-img" alt="result">
-         <a href="/instruction" class="cus-btn d-btn">Instructions</a>
-      </div>
-      <div class="c-card">
-         <img src="images/settings.png" class="c-img" alt="result">
-         <a href="/setting" class="cus-btn d-btn">Setting</a>
-      </div>
-   </section>
+            <div class="resultBox hide" id="resultBox1">
+               <div id="close-icon"></div>
+               <h2>No Quiz Found!</h2>
+            </div>
+       
+      
+         <div class="resultBox hide" id="resultBox2">
+            <div id="close-icon" onclick="this.parentNode.remove();"></div>
+            <div class="quizHeader">
+               <p>Quiz ID</p>
+               <p>Title</p>
+               <p>Action</p>
+            </div>
+     
+            <!-- <div class="quizDetail">
+               <p></p>
+               <p></p>
+               <a href="" class="startBtn">Start</a>
+            </div> -->
+              
+         </div>
+      </section>
 
-   <%- include ('partials/footer.ejs')%>
-   
-   <script src="js/bootstrap.js"></script>
-   <script src="js/fontawesome.js"></script>
+      <section class="container" id="main-body">
+
+         <div class="c-card">
+            <img src="images/quiz.png" class="c-img" alt="attempt quiz">
+            <a href="quiz" class="cus-btn d-btn">Quiz</a>
+         </div>
+         <div class="c-card">
+            <img src="images/exam.png" class="c-img" alt="result">
+            <a href="s/result" class="cus-btn d-btn">Result</a>
+         </div>
+         <div class="c-card">
+            <img src="images/user.png" class="c-img" alt="profile">
+            <a href="/s/profile" class="cus-btn d-btn">Profile</a>
+
+         </div>
+         <div class="c-card">
+            <img src="images/settings.png" class="c-img" alt="result">
+            <a href="/setting" class="cus-btn d-btn">Setting</a>
+         </div>
+      </section>
+
+
+      <script src="js/bootstrap.js"></script>
+      <script src="js/dashboard.js"></script>
+      <script src="js/axios.min.js"></script>
+      <script src="js/fontawesome.js"></script>
 </body>
 
 </html>

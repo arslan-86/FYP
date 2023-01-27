@@ -62,8 +62,8 @@ addQuestion.addEventListener('click', (e) => {
 })
 
 
-close_icon.addEventListener('click', (e)=>{
-   close_icon.parentElement.remove();
+close_icon.addEventListener('click', function(e){
+   e.parentNode.remove();
    console.log('clicked');
 })
 

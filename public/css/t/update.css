@@ -1,12 +1,21 @@
 form{
    
    /* background-color: aqua; */
-   width: 60%;
+   width: 70%;
    margin: 4rem auto;
    display: flex;
    flex-direction: column;
-   /* align-items: center; */
+   align-items: center;
    /* text-align: center; */
+}
+
+.quizInfo {
+   width: 63%;
+   padding: 2rem 4rem 3rem 4rem !important;
+   background-color: var(--very-pale-blue);
+   border-radius: 2rem;
+   box-shadow: 0 .5rem 1rem 0 rgba(0, 0, 0, 0.4);
+   margin-bottom: 2rem;
 }
 
 .head-input-group{
@@ -23,7 +32,7 @@ form label{
 form input{
    display: block;
    font-size: 1.6rem !important;
-   width: 70%;
+   width: 100%;
 }
 
 form input:focus, textarea:focus{
@@ -32,7 +41,7 @@ form input:focus, textarea:focus{
 
 form textarea{
    font-size: 1.6rem;
-   width: 70%;
+   width: 100%;
    border-radius: .8rem;
    padding: .6rem;
 }

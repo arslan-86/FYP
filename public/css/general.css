@@ -1,3 +1,9 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,500&display=swap');
+
+/* font-family: 'Poppins', sans-serif; */
+/* font-family: 'IBM Plex Mono', monospace; */
+
 :root {
    --red: #F65058FF;
    --yellow: #FBDE44FF;
@@ -14,7 +20,9 @@
    box-sizing: border-box;
 }
 
-
+body{
+   font-family: 'Poppins', sans-serif;
+}
 header{
    height: 6.4rem; 
    padding: 0rem 6rem; 

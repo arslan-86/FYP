@@ -2,4 +2,6 @@ node_modules
 .env
 ToDos.txt
 sampledata.json
+uploads
+./public/uploads
 public/uploads

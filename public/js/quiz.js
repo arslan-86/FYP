@@ -30,8 +30,6 @@ searchBtn.addEventListener('click', async (e) => {
             errorLabel.classList.remove('hideLabel')
          }
 
-
-
       } catch (error) {
          console.log(error)
       }
@@ -47,7 +45,7 @@ searchBtn.addEventListener('click', async (e) => {
             throw new Error(res.statusText)
          }
          let data = await res.json();
-         
+
          if (data.length > 0) {
             displayQuizInfo(data)
          } else {

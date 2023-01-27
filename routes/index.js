@@ -248,6 +248,20 @@ router.get('/quiz/t/:title', isAuth, quizController.quizGetTitleReq);
 // 
 
 
+
+router.post('/dashboardSearchId', async (req, res) => {
+   let searchValue =  req.body.searchValue;
+   let x = await Quiz.find({quiz_id: searchValue});
+   res.send(x)
+   
+})
+router.post('/dashboardSearchTitle', async(req, res) => {
+   let searchValue =  req.body.searchValue;
+   let x = await Quiz.find({title: searchValue });
+   res.send(x);
+})
+
+
 router.get('/*', (req, res)=>{
    res.render('404')
 })
