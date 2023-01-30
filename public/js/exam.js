@@ -19,6 +19,7 @@ let quiz_id = '';
 let quiz_id2 = '';
 let quiz_title = '';
 let warningCounter = 0;
+let resize = 0;
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -48,23 +49,20 @@ let BONUS = 0;
 let MAX_QUESTIONS = 0;
 let totalMarks = 0;
 
-
-
 // Getting Quiz form Api
-
-
-
-
-
-
-
 
 window.addEventListener('load', e => {
    const btn = document.getElementById('myModal');
 
    btn.click();
 })
+window.addEventListener('resize', () =>{
+   ++resize;
+   if(resize === 2){
+      failed();
+   }
 
+})
 confirmBtn.addEventListener('click', e => {
    if (html.requestFullscreen) {
       html.requestFullscreen();
@@ -76,7 +74,6 @@ closeBtn.addEventListener('click', e => {
    window.location.assign('/quiz')
 })
 
-
 // GLANCE TRACKER
 
 function glanceTracker() {
@@ -85,24 +82,25 @@ function glanceTracker() {
       callbackTrack: function (isWatching) {
          if (isWatching) {
             console.log('Hey, you are watching bro');
-            if(warningCounter == 0){
+            if (warningCounter == 0) {
                startQuiz();
             }
+            
 
          } else {
             console.log('You are not watching anymore :(');
+
             warningCounter++;
-            if  (warningCounter === 4) {
+            if (warningCounter === 4) {
                return failed();
             }
-            if(warningCounter === 3){
+            if (warningCounter === 3) {
                lastWarning();
             }
             else {
                console.log(warningCounter);
                warning();
             }
-
          }
       },
       callbackReady: function (error, spec) {
@@ -111,7 +109,6 @@ function glanceTracker() {
             return;
          }
          console.log('All is well :)');
-         
       },
       isDisplayVideo: true,
       canvasId: 'glanceTrackerCanvas',
@@ -139,6 +136,7 @@ async function startQuiz() {
    } catch (error) {
       console.log(error);
    }
+   console.log(quiz_id);
    availableQuestions = [...questions];
    questionCounter = 0;
    score = 0;
@@ -146,13 +144,13 @@ async function startQuiz() {
 }
 
 async function getNewQuestion() {
-   
+
    loader.classList.add('hide')
    quiz.classList.remove('hide');
    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-      // progressBarFull.style.width = 0;
-      // scoreText.innerText = 0;
+   
       if (document.exitFullscreen) {
+         resize = 0;
          document.exitFullscreen();
       }
 

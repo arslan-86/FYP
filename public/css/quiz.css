@@ -58,19 +58,19 @@ input:focus{
 
 
 #search-btn{
-   margin-left: -2px;
+   margin: .8rem .5rem .5rem -3px;
    border-top-left-radius: 0;
    /* to align perfectly with seach bar => removing Left side radius */
    border-bottom-left-radius: 0;
    width: 8rem;
-   height: 4.51rem;
+   padding: 6px 0 ; 
    border: 1px solid var(--navy);   
-   margin-bottom: 4rem;
+   
 }
 
 .errorLabel{
    text-align: center;
-   margin-top: -2rem;
+   margin-top: 2rem;
 }
 .errorLabel h2{
    color: red;
@@ -81,7 +81,7 @@ input:focus{
 
 
 .grid-container{
-
+   margin-top: 4rem;
    display: grid;
    grid-template-columns: 1fr 1fr;
    gap: 3rem;

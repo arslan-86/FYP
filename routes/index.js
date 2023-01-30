@@ -185,27 +185,8 @@ router.post('/register', registerController.postRegister);
 router.get('/s/exam/:id', isAuth, studentController.examGetHandler)
 // Api created for frontEnd Javascript exam.js  line:147
 router.get('/s/getexam',isAuth,  studentController.getExam)
-router.get('/s/result', isAuth, studentController.getResult);
-// left this hander here because im using "id" which i cannot use in other file
-// line:18 => line:24 => line:31 => line:91
-// in order to save result i need student id which i cannot get in other files
-// so when student sign in and goes to dashboard his _id automatically stores in
-// id variable
-router.post('/s/result', (req, res) => {
-   const result = new Result({
-      quiz_id: req.body.quiz_id,
-      quiz_id2: req.body.quiz_id2,
-      student_id: req.user._id,
-      quiz_title: req.body.quiz_title,
-      totalMarks: req.body.totalMarks,
-      obtainedMarks: req.body.obtainedMarks
-   })
-   result.save()
-      .then(() => console.log('Result Saved'))
-      .catch((err) => console.log(err));
-   res.send('Result Saved')
-   User.findOneAndUpdate({ _id: req.user._id }, { $push: { attemptedQuizzes: req.body.quiz_id } }).then(() => console.log('savedd')).catch((er) => console.log(er))
-})
+router.get('/s/result', isAuth, studentController.resultGet);
+router.post('/s/result', studentController.resultPost)
 router.get('/s/profile', isAuth, studentController.profileGet)
 router.post('/s/profile', upload.single('image'), studentController.profilePost)
 

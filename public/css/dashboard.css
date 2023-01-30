@@ -64,7 +64,7 @@
    right: 25rem;
    top: 27.8rem;
 }
-#close-icon {
+.close-icon {
    /* position: absolute   ; */
    width: 20px;
    height: 20px;
@@ -75,7 +75,7 @@
    z-index: 1;
    cursor: pointer;
 }
-#close-icon::before{
+.close-icon::before{
    content: '';
    width: 15px;
    height: 2px;
@@ -86,7 +86,7 @@
    transform: rotate(45deg);
    z-index: 5;
 }
-#close-icon::after{
+.close-icon::after{
    content: '';
    width: 15px;
    height: 2px;

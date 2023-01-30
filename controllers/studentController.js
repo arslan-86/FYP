@@ -15,7 +15,7 @@ const examGetHandler = async (req, res) => {
 const  getExam = async (req, res)=>{
    try {
       if(id == '' || id == undefined){
-         res.send(404)
+         res.sendStatus(404)
       }
       let result = await Quiz.findById({_id: id});
       res.send(result)
@@ -24,7 +24,7 @@ const  getExam = async (req, res)=>{
    }
 }
 
-const getResult = async (req, res) => {
+const resultGet = async (req, res) => {
    if (req.user.isTeacher) {
       res.redirect('/t/result')
    }
@@ -33,6 +33,25 @@ const getResult = async (req, res) => {
    // console.log(result);
    res.render('s/result', { result: result });
    }
+}
+
+const resultPost = async (req, res) => {
+   const result = new Result({
+      quiz_id: req.body.quiz_id,
+      quiz_id2: req.body.quiz_id2,
+      student_id: req.user._id,
+      quiz_title: req.body.quiz_title,
+      totalMarks: req.body.totalMarks,
+      obtainedMarks: req.body.obtainedMarks
+   })
+   result.save()
+      .then(() => console.log('Result Saved'))
+      .catch((err) => console.log(err));
+   res.send('Result Saved')
+   User.findOneAndUpdate({ _id: req.user._id }, { $push: { attemptedQuizzes: req.body.quiz_id } })
+   .then(() => console.log('attemptedQuizzes updated'))
+   .catch((er) => console.log(er))
+
 }
 const profileGet = async (req, res) => {
    if(req.user.isTeacher){
@@ -48,6 +67,7 @@ const profileGet = async (req, res) => {
       .catch(e => console.log(e))
    }
 }
+
 const profilePost = async (req, res) => {
    User.updateOne(
       {_id: req.user._id},
@@ -76,7 +96,7 @@ const profilePost = async (req, res) => {
   
 }
 
-module.exports = {examGetHandler, getExam, getResult, profileGet, profilePost};
+module.exports = {examGetHandler, getExam, resultGet, resultPost, profileGet, profilePost};
 
 
 
