@@ -2,10 +2,10 @@
   "name": "smart_quiz",
   "version": "1.0.0",
   "description": "Final year project",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Arslan Khan",
   "license": "ISC",
