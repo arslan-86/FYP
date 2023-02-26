@@ -120,3 +120,4 @@ const startBtn = document.getElementById('start-quiz-btn');
 
 
 
+{/* <a href="s/exam/${quiz[i]._id}" class="cus-btn" id="start-quiz-btn">Start</a> */}

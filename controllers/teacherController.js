@@ -110,6 +110,9 @@ const resultGet = async (req, res) => {
                   title    : x[j].quiz_title,
                   desc     : x[j].quiz_id.description,
                   std_name : x[j].student_id.firstName + ' ' + x[j].student_id.lastName,
+                  discipline: x[j].student_id.discipline,
+                  semester: x[j].student_id.semester,
+                  section: x[j].student_id.section,
                   obtMarks : x[j].obtainedMarks,
                   tMarks   : x[j].totalMarks,
                })

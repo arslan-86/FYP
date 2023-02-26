@@ -11,6 +11,11 @@ const closeBtn = document.getElementById('closeBtn');
 
 const loader = document.getElementById('loader');
 
+const timer = document.getElementById('time');
+
+const warn = document.getElementById('warning');
+
+
 
 
 const html = document.documentElement;
@@ -56,17 +61,17 @@ window.addEventListener('load', e => {
 
    btn.click();
 })
-window.addEventListener('resize', () =>{
-   ++resize;
-   if(resize === 2){
-      failed();
-   }
+// window.addEventListener('resize', () =>{
+//    ++resize;
+//    if(resize === 2){
+//       failed();
+//    }
 
-})
+// })
 confirmBtn.addEventListener('click', e => {
-   if (html.requestFullscreen) {
-      html.requestFullscreen();
-   }
+   // if (html.requestFullscreen) {
+   //    html.requestFullscreen();
+   // }
    glanceTracker();
 
 })
@@ -78,10 +83,13 @@ closeBtn.addEventListener('click', e => {
 
 function glanceTracker() {
    JEELIZGLANCETRACKER.init({
-
+      
       callbackTrack: function (isWatching) {
          if (isWatching) {
             console.log('Hey, you are watching bro');
+            warn.classList.add('hide');
+            quiz.classList.remove('hide');
+           
             if (warningCounter == 0) {
                startQuiz();
             }
@@ -89,13 +97,9 @@ function glanceTracker() {
 
          } else {
             console.log('You are not watching anymore :(');
-
             warningCounter++;
             if (warningCounter === 4) {
-               return failed();
-            }
-            if (warningCounter === 3) {
-               lastWarning();
+                return failed();
             }
             else {
                console.log(warningCounter);
@@ -116,7 +120,6 @@ function glanceTracker() {
       NNCPath: 'js/dist/'
    });
 }
-
 
 
 async function startQuiz() {
@@ -143,16 +146,49 @@ async function startQuiz() {
    getNewQuestion();
 }
 
-async function getNewQuestion() {
 
+
+   let counter = 15;
+
+   setInterval(()=>{
+      if(counter < 0){
+         getNewQuestion();
+         score = score + 0;
+         counter = 15;
+      }
+      else{
+         timer.innerText = `${counter}`;
+         counter = counter - 1;  
+      }
+   },1000)
+
+   if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+      clearInterval();
+   }
+
+// 
+
+
+
+
+
+
+
+
+
+
+
+
+async function getNewQuestion() {
+   counter = 15;
    loader.classList.add('hide')
    quiz.classList.remove('hide');
    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
    
-      if (document.exitFullscreen) {
-         resize = 0;
-         document.exitFullscreen();
-      }
+      // if (document.exitFullscreen) {
+      //    resize = 0;
+      //    document.exitFullscreen();
+      // }
 
       JEELIZGLANCETRACKER.toggle_pause(isPause = true, shutCamera = true)
       JEELIZGLANCETRACKER.toggle_display(isDisplay = false)
@@ -218,38 +254,37 @@ choices.forEach(choice => {
 })
 
 
-function warning() {
-   const warning = document.getElementById('warning');
+async function warning() {
+   
    // const failed = document.getElementById('failed');
-   loader.classList.add('hide');
    quiz.classList.add('hide');
-
-   warning.classList.remove('hide');
-
-   setTimeout(async () => {
-      await warning.classList.add('hide');
-      await quiz.classList.remove('hide');
-   }, 3000)
+   
+   warn.classList.remove('hide');
+   
+   // await setTimeout(async () => {
+   //    await warning.classList.add('hide'); 
+      
+   // }, 3000)
 }
 
-function lastWarning() {
-   const lastWarning = document.getElementById('lastWarning');
-   // const failed = document.getElementById('failed');
-   loader.classList.add('hide');
-   quiz.classList.add('hide');
+// function lastWarning() {
+//    const lastWarning = document.getElementById('lastWarning');
+//    // const failed = document.getElementById('failed');
+//    loader.classList.add('hide');
+//    quiz.classList.add('hide');
 
-   lastWarning.classList.remove('hide');
+//    lastWarning.classList.remove('hide');
 
-   setTimeout(async () => {
-      await lastWarning.classList.add('hide');
-      await quiz.classList.remove('hide');
-   }, 5000)
-}
+//    setTimeout(async () => {
+//       await lastWarning.classList.add('hide');
+//       await quiz.classList.remove('hide');
+//    }, 3000)
+// }
 //In case student failed this setting will be displayed
 
 async function failed() {
    const failed = document.getElementById('failed');
-   await quiz.classList.add('hide');
+    quiz.classList.add('hide');
    loader.classList.add('hide')
    failed.classList.remove('hide');
 

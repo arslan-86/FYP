@@ -51,9 +51,10 @@
 
 
 
-         <% for(let i=0; i < data.questions.length; i++){%>
-            <div id="questions">
-               <div class="input-group">
+         <div id="questions">
+               <% for(let i=0; i < data.questions.length; i++){%>
+                  <div class="input-group">
+                  <div id="close-icon" onclick="return this.parentNode.remove()"></div>
 
                   <label for="question">Question</label>
                   <textarea name="question" id="question" cols="50" rows="2"><%= data.questions[i].question%></textarea required>
@@ -68,10 +69,12 @@
                   <input type="number" name="answer" id="correct_answer" min="1" max="4" required value="<%= data.questions[i].answer%>">
 
                </div>
+               <%}%>
             </div>
-         <%}%>
-        
 
+        <div>
+           <button id="addQuestion" type="button" class="cus-btn">Add Question</button>
+        </div>
       <div>
         <button id="addQuestion" type="submit" class="cus-btn">Update</button>
       </div>
@@ -81,5 +84,7 @@
    </a>
 
    </form>
+
+   <script src="js/t/update.js"></script>
 </body>
 </html>
