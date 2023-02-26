@@ -39,9 +39,9 @@ I used this library in Smart Quiz Application in such a way that if user try to 
 
 
 ## How to use
-  First of all clone this repository in your local machine. Then open the source code in your favourite code editor. After that add a ```.env``` file and add a environment variable ```mongo_Uri```
+  First of all clone this repository in your local machine. Then open the source code in your favourite code editor. After that add a ```.env``` file and add a environment variable ```MongoUri```
   ```
-  mongoUri='Your database string'
+  MongoUri='Your database string'
   ```
   Run the following command to install dependencies
   ```node
