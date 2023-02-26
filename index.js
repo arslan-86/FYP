@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 // app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-dbConnect();
+// dbConnect();
 
 const sessionStore =MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/smart_quiz', collection: 'sessions' })
 app.use(
