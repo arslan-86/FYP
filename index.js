@@ -3,6 +3,8 @@ const express = require('express');
 const { join } = require('path');
 const session = require('express-session');
 const mongoose = require('mongoose');
+
+const mongoString = process.env.MongoUri;
 const flash = require('connect-flash');
 const passport = require('passport');
 const dbConnect = require('./config/db.js');
@@ -11,7 +13,7 @@ require('./config/userAuth.js')(passport);
 
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 // EJS as view engine
 // app.use(expressLayouts);
@@ -61,4 +63,24 @@ app.use((req, res, next) =>{
 app.use('/', require('./routes/index.js'));
 
 
-app.listen(port, console.log(`Server listening on http://localhost:${port}`))
+
+
+
+async function connect() {
+   try {
+      const options = {
+         // newUrlParser: true,
+         useUnifiedTopology: true,
+         dbName: 'smart_quiz'
+      }
+      mongoose.set('strictQuery', false);
+      await mongoose.connect(mongoString, options)
+      
+      console.log("Database Connection Established.");
+      app.listen(port, console.log(`Server listening on http://localhost:${port}`))
+   } catch (error) {
+      console.log(error);
+   }
+}
+
+
